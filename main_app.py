@@ -20,7 +20,7 @@ def encrypt_string():
     string = request.args.get('string', 'default')
     # For encryption arguments needs to be as bytes data
     encrypted_string = f.encrypt(str.encode(string))
-    return render_template('index.html', string=encrypted_string)
+    return render_template('encrypt_page.html', string=encrypted_string)
 
 
 @app.route('/decrypt')
@@ -36,7 +36,7 @@ def decrypt_string():
     # For encryption arguments needs to be as bytes data
     decrypted_bytes = f.decrypt(str.encode(string))
     decrypted_string = str(decrypted_bytes.decode("utf-8"))
-    return render_template('index.html', string=decrypted_string)
+    return render_template('decrypt_page.html', string=decrypted_string)
 
 
 @app.route('/')

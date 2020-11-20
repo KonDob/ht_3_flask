@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+    {% block head %}
     <head>
         <meta charset="UTF-8">
-        <title>Flake</title>
+        <title>{%block title%}{% endblock %}</title>
+    {% endblock %}
     </head>
     <body>
-        <h1>{{ string }}</h1>
+        {% block content %}
+        {% endblock %}
+        {% block footer %}
+        {% endblock %}
     </body>
 </html>

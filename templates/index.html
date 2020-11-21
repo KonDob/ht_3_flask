@@ -1,7 +1,11 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     {% block head %}
     <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
         <meta charset="UTF-8">
         <title>{%block title%}{% endblock %}</title>
     {% endblock %}

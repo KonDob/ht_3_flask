@@ -10,12 +10,15 @@ f = Fernet(key)
 
 @app.route('/encrypt')
 def encrypt_string():
-    """ 
-        Functions get from url string, which need to encrypt. 
-        And returns encrypted string as bytes.
+
+    """
+        Function gets from url string, which need to encrypt.
+        And returns html page with encrypted string as bytes inside.
+        if user doesn`t provide string - string would be 'default'
 
     Returns:
         bytes: bytes of encrypted string
+        html page: rendered html
     """
     string = request.args.get('string', 'default')
     # For encryption arguments needs to be as bytes data
@@ -25,23 +28,26 @@ def encrypt_string():
 
 @app.route('/decrypt')
 def decrypt_string():
-    """ 
-        Functions get from url string, which need to decrypt as string type. 
-        And returns decrypted string as string.
+
+    """
+        Function gets from url string, which need to decrypt as string type.
+        And returns html page with decrypted string as string inside.
+        if user doesn`t provide string - string would be 'default'
 
     Returns:
-        string: decrypted string
+        bytes: bytes of decrypted string
+        html page: rendered html
     """
     string = request.args.get('string', 'default')
-    # For encryption arguments needs to be as bytes data
+    # For decryption arguments needs to be as bytes data
     decrypted_bytes = f.decrypt(str.encode(string))
     decrypted_string = str(decrypted_bytes.decode("utf-8"))
     return render_template('decrypt_page.html', string=decrypted_string)
 
 
 @app.route('/')
-def catalog():
-    return "<h1>Hello Catalog!!!!<h1>"
+def index():
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
